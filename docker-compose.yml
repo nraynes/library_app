@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  front:
+    build: library_frontend/
+    depends_on:
+      - 'database'
+    ports: 
+      - '3000:3000'
+
+  back:
+    build: library_backend/
+    depends_on:
+      - 'database'
+    ports:
+      - '1000:1000'
+
+  database:
+    image: postgres:13.4
+    restart: always
+    environment:
+      POSTGRES_PASSWORD: mysecretpassword
